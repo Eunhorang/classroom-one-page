@@ -1,24 +1,27 @@
-# 교실 한 장 소셜 카드 생성 기록
+# 교실 한 장 소셜 공유 이미지 제작 안내
 
-- 생성 방식: Codex 내장 이미지 생성 도구
-- 생성 횟수: 1회
-- 결과 파일: `public/og.png`
-- 크기: 1536 × 1024 PNG
-- 검사 결과: 지정한 한글 문구 2개가 정확하며, 추가 문구·인물·캐릭터·외부 로고·워터마크가 없습니다.
+## 현재 파일
 
-## 최종 프롬프트
+- 디자인 원본: `docs/og-card.html`
+- 사용 글꼴: `app/fonts/PretendardVariable.woff2`
+- 최종 이미지: `public/og.png`
+- 이미지 크기: 1536 × 1024 PNG
 
-```text
-Use case: product-mockup
-Asset type: Open Graph social sharing card for the Korean teacher web app “교실 한 장”; landscape 3:2 composition intended for 1536×1024 display
-Primary request: Create a polished editorial product mockup that presents a simple web tool turning classroom ideas into a single printable A4 worksheet.
-Scene/backdrop: warm cream paper background with extremely subtle natural paper grain, calm and uncluttered.
-Subject: an elegant white A4 worksheet card in portrait orientation paired with a refined browser-like editing panel. The A4 card should show only non-text visual structure: forest-green header bars, cream information boxes, thin rules, simple checkboxes, and blank writing lines. The editing panel should show only blank rounded input fields, forest-green selection chips, toggles, and understated controls made from pure geometric shapes—no labels and no readable placeholder text.
-Style/medium: sophisticated editorial design and premium digital-product mockup, clean grid, restrained Korean stationery sensibility, realistic paper depth, subtle soft shadows, crisp edges, no photoreal desk props.
-Composition/framing: wide 3:2 landscape. Place the two exact Korean text lines as the main focal point with generous breathing room; arrange the A4 worksheet and editing panel as a balanced overlapping product mockup beside and slightly below the copy. Keep all important elements safely inside the frame.
-Lighting/mood: soft diffused studio light, warm, trustworthy, calm, teacher-friendly.
-Color palette: background #F7F6F1 and #F6EDDD; primary forest #245C4D; deep forest #173F35; white paper #FFFEF9; muted gray-green #66716B; fine lines #DFE5E1.
-Materials/textures: fine uncoated paper grain, matte UI surfaces, very subtle embossed depth and soft natural shadows.
-Text (verbatim): Render exactly these two Korean strings, each exactly once, and no other text anywhere: large title “교실 한 장”; smaller supporting line “수업 아이디어를 A4 한 장으로”. The title must be the largest element, bold and highly legible; the supporting line must be clearly legible beneath it. Copy every character exactly. Do not add punctuation.
-Constraints: only the two specified text strings may appear; every other UI or worksheet detail must be blank or purely geometric. No people, no characters, no mascots, no logo mark, no watermark, no brand icons, no decorative letters, no numbers, no pseudo-text, no stock-photo props. Maintain excellent Korean typography and high contrast. Final output should feel like a finished premium launch card, not a wireframe or concept sketch.
-```
+## 디자인 원칙
+
+- 웹사이트와 동일한 Pretendard 한글 산세리프를 사용합니다.
+- 배경은 연한 회색, 핵심 강조색은 짙은 초록으로 제한합니다.
+- 왼쪽에는 서비스의 목적을, 오른쪽에는 입력 화면과 A4 미리보기를 배치합니다.
+- 외부 로고·워터마크·학생 개인정보·실제 학교 정보는 넣지 않습니다.
+- 작은 소셜 미리보기에서도 제목이 먼저 읽히도록 글자 대비와 여백을 유지합니다.
+
+## 다시 만드는 방법
+
+1. Chrome에서 `docs/og-card.html`을 엽니다.
+2. 브라우저 뷰포트를 1536 × 1024로 맞춥니다.
+3. 웹 폰트 로딩이 끝난 뒤 화면을 PNG로 캡처합니다.
+4. 결과를 `public/og.png`로 저장합니다.
+5. 이미지 크기가 정확히 1536 × 1024인지 확인합니다.
+6. 링크 공유 전 한글 잘림, 오탈자, 외부 로고와 개인정보 포함 여부를 확인합니다.
+
+OG 이미지를 수정할 때는 웹사이트의 색상·글꼴·문구도 함께 확인하여 실제 화면과 공유 카드의 인상이 달라지지 않도록 합니다.

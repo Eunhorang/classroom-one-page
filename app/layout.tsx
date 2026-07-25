@@ -1,5 +1,14 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import "./globals.css";
+
+const pretendard = localFont({
+  src: "./fonts/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  display: "swap",
+  weight: "45 920",
+  fallback: ["Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "sans-serif"],
+});
 
 const repositoryOwner = process.env.GITHUB_REPOSITORY_OWNER ?? "Eunhorang";
 const repositoryName =
@@ -55,7 +64,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ko">
-      <body>{children}</body>
+      <body className={pretendard.variable}>{children}</body>
     </html>
   );
 }

@@ -1,0 +1,495 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <style>
+    @font-face {
+      font-family: "Pretendard OG";
+      src: url("../app/fonts/PretendardVariable.woff2") format("woff2");
+      font-weight: 45 920;
+      font-style: normal;
+    }
+
+    * { box-sizing: border-box; }
+
+    html, body {
+      width: 1536px;
+      height: 1024px;
+      margin: 0;
+      overflow: hidden;
+    }
+
+    body {
+      display: grid;
+      grid-template-columns: 1fr 690px;
+      gap: 66px;
+      padding: 74px 78px 70px;
+      background: #f4f5f3;
+      color: #1c211e;
+      font-family: "Pretendard OG", sans-serif;
+      word-break: keep-all;
+    }
+
+    .copy {
+      display: flex;
+      min-width: 0;
+      flex-direction: column;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .brand-mark {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border-radius: 14px;
+      background: #176b59;
+      color: #fff;
+      font-size: 23px;
+      font-weight: 800;
+    }
+
+    .brand-name {
+      font-size: 26px;
+      font-weight: 760;
+      letter-spacing: -0.035em;
+    }
+
+    .brand-sub {
+      margin-top: 2px;
+      color: #818984;
+      font-size: 14px;
+      font-weight: 570;
+    }
+
+    .message {
+      margin-top: auto;
+      margin-bottom: auto;
+      padding-bottom: 10px;
+    }
+
+    .eyebrow {
+      margin: 0 0 22px;
+      color: #176b59;
+      font-size: 18px;
+      font-weight: 720;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: 76px;
+      font-weight: 770;
+      letter-spacing: -0.065em;
+      line-height: 1.08;
+    }
+
+    h1 span { color: #176b59; }
+
+    .description {
+      max-width: 620px;
+      margin: 31px 0 0;
+      color: #68716c;
+      font-size: 23px;
+      font-weight: 500;
+      line-height: 1.55;
+    }
+
+    .points {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px 22px;
+      margin-top: 34px;
+    }
+
+    .point {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: #56605a;
+      font-size: 16px;
+      font-weight: 620;
+    }
+
+    .check {
+      display: grid;
+      width: 22px;
+      height: 22px;
+      place-items: center;
+      border-radius: 50%;
+      background: #e4f1ed;
+      color: #176b59;
+      font-size: 13px;
+      font-weight: 820;
+    }
+
+    .privacy {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: #6d756f;
+      font-size: 14px;
+      font-weight: 580;
+    }
+
+    .privacy-dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: #45a17c;
+      box-shadow: 0 0 0 5px rgba(69, 161, 124, 0.12);
+    }
+
+    .product {
+      position: relative;
+      align-self: center;
+      height: 838px;
+      border: 1px solid #dfe4e1;
+      border-radius: 28px;
+      background: #fff;
+      box-shadow: 0 30px 75px rgba(25, 35, 29, 0.11);
+    }
+
+    .product-bar {
+      display: flex;
+      height: 84px;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 28px;
+      border-bottom: 1px solid #e8ebe9;
+    }
+
+    .product-title small {
+      display: block;
+      color: #176b59;
+      font-size: 12px;
+      font-weight: 740;
+    }
+
+    .product-title strong {
+      display: block;
+      margin-top: 5px;
+      font-size: 20px;
+      font-weight: 730;
+      letter-spacing: -0.03em;
+    }
+
+    .save {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      color: #78817c;
+      font-size: 11px;
+      font-weight: 620;
+    }
+
+    .save i {
+      display: grid;
+      width: 18px;
+      height: 18px;
+      place-items: center;
+      border-radius: 50%;
+      background: #e9f3f0;
+      color: #176b59;
+      font-size: 10px;
+      font-style: normal;
+      font-weight: 780;
+    }
+
+    .editor {
+      width: 310px;
+      padding: 28px;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      margin-bottom: 18px;
+      font-size: 13px;
+      font-weight: 710;
+    }
+
+    .section-label span {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border-radius: 7px;
+      background: #f1f3f1;
+      color: #67706a;
+      font-size: 10px;
+    }
+
+    .field { margin-bottom: 16px; }
+    .field-label {
+      margin-bottom: 7px;
+      color: #5c655f;
+      font-size: 10px;
+      font-weight: 680;
+    }
+
+    .input {
+      height: 42px;
+      border: 1px solid #d9dfdb;
+      border-radius: 9px;
+      background: #fff;
+    }
+
+    .input.textarea { height: 78px; }
+
+    .colors {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+    }
+
+    .color {
+      display: grid;
+      height: 38px;
+      place-items: center;
+      border: 1px solid #dfe4e1;
+      border-radius: 9px;
+    }
+
+    .color:first-child {
+      border-color: #176b59;
+      background: #e9f3f0;
+    }
+
+    .color i {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #176b59;
+    }
+
+    .color:nth-child(2) i { background: #38577f; }
+    .color:nth-child(3) i { background: #b95e49; }
+
+    .paper-stage {
+      position: absolute;
+      top: 112px;
+      right: 27px;
+      bottom: 27px;
+      width: 358px;
+      padding: 18px;
+      border: 1px solid #dde2df;
+      border-radius: 18px;
+      background: #e9ebe8;
+    }
+
+    .paper {
+      display: flex;
+      height: 100%;
+      flex-direction: column;
+      padding: 27px 24px 23px;
+      background: #fff;
+      box-shadow: 0 13px 30px rgba(27, 36, 31, 0.12);
+    }
+
+    .paper-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mini-brand {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: #176b59;
+      font-size: 9px;
+      font-weight: 730;
+    }
+
+    .mini-brand span {
+      display: grid;
+      width: 21px;
+      height: 21px;
+      place-items: center;
+      border-radius: 6px;
+      background: #176b59;
+      color: #fff;
+      font-size: 8px;
+    }
+
+    .tags { display: flex; gap: 4px; }
+    .tags i {
+      width: 30px;
+      height: 13px;
+      border-radius: 999px;
+      background: #e9f3f0;
+    }
+
+    .paper h2 {
+      margin: 28px 0 11px;
+      color: #0f5143;
+      font-size: 24px;
+      font-weight: 760;
+      letter-spacing: -0.045em;
+      line-height: 1.25;
+    }
+
+    .paper-intro {
+      width: 78%;
+      height: 7px;
+      border-radius: 999px;
+      background: #d8ddda;
+    }
+
+    .rule {
+      height: 1px;
+      margin: 25px 0 17px;
+      background: #176b59;
+    }
+
+    .goal {
+      height: 47px;
+      border-left: 3px solid #176b59;
+      border-radius: 7px;
+      background: #e9f3f0;
+    }
+
+    .paper-grid {
+      display: grid;
+      grid-template-columns: 0.7fr 1.3fr;
+      gap: 9px;
+      margin-top: 13px;
+    }
+
+    .paper-box {
+      height: 82px;
+      border: 1px solid #e0e4e1;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    .paper-box:first-child { background: #f6f0e4; }
+
+    .paper-heading {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      margin: 22px 0 10px;
+    }
+
+    .paper-heading b {
+      color: #176b59;
+      font-size: 8px;
+    }
+
+    .paper-heading span {
+      width: 88px;
+      height: 9px;
+      border-radius: 999px;
+      background: #2c3430;
+    }
+
+    .activities {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 7px;
+    }
+
+    .activity {
+      height: 92px;
+      padding: 10px;
+      border: 1px solid #e0e4e1;
+      border-radius: 8px;
+    }
+
+    .activity i {
+      display: block;
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      background: #176b59;
+    }
+
+    .checks {
+      display: grid;
+      gap: 7px;
+      margin-top: auto;
+    }
+
+    .check-line {
+      height: 31px;
+      border: 1px solid #e0e4e1;
+      border-radius: 6px;
+    }
+
+    .paper-footer {
+      height: 1px;
+      margin-top: 18px;
+      background: #dfe3e0;
+    }
+  </style>
+</head>
+<body>
+  <section class="copy">
+    <div class="brand">
+      <div class="brand-mark">한</div>
+      <div>
+        <div class="brand-name">교실 한 장</div>
+        <div class="brand-sub">A4 수업 자료 만들기</div>
+      </div>
+    </div>
+
+    <div class="message">
+      <p class="eyebrow">교사를 위한 한 장 도구</p>
+      <h1>수업 아이디어를<br /><span>단정한 A4 한 장으로.</span></h1>
+      <p class="description">내용을 입력하면 바로 미리보고,<br />인쇄하거나 PDF로 저장할 수 있어요.</p>
+      <div class="points">
+        <div class="point"><span class="check">✓</span>가입 없이 바로 시작</div>
+        <div class="point"><span class="check">✓</span>입력 즉시 미리보기</div>
+        <div class="point"><span class="check">✓</span>브라우저 자동 저장</div>
+      </div>
+    </div>
+
+    <div class="privacy"><span class="privacy-dot"></span>입력 내용은 외부로 전송되지 않아요</div>
+  </section>
+
+  <section class="product" aria-label="교실 한 장 화면 미리보기">
+    <div class="product-bar">
+      <div class="product-title"><small>01 · 내용 입력</small><strong>한 장 내용 채우기</strong></div>
+      <div class="save"><i>✓</i>이 기기에 자동 저장됨</div>
+    </div>
+
+    <div class="editor">
+      <div class="section-label"><span>1</span>기본 정보</div>
+      <div class="field"><div class="field-label">자료 유형 · 학년 · 교과</div><div class="input"></div></div>
+      <div class="field"><div class="field-label">강조 색상</div><div class="colors"><div class="color"><i></i></div><div class="color"><i></i></div><div class="color"><i></i></div></div></div>
+      <div class="section-label"><span>2</span>제목과 목표</div>
+      <div class="field"><div class="field-label">자료 제목</div><div class="input"></div></div>
+      <div class="field"><div class="field-label">한 줄 안내</div><div class="input"></div></div>
+      <div class="field"><div class="field-label">학습 목표</div><div class="input textarea"></div></div>
+      <div class="section-label"><span>3</span>수업 활동</div>
+      <div class="field"><div class="input textarea"></div></div>
+    </div>
+
+    <div class="paper-stage">
+      <article class="paper">
+        <div class="paper-top">
+          <div class="mini-brand"><span>한</span>교실 한 장</div>
+          <div class="tags"><i></i><i></i><i></i></div>
+        </div>
+        <h2>곱셈으로 생활 속<br />문제 해결하기</h2>
+        <div class="paper-intro"></div>
+        <div class="rule"></div>
+        <div class="goal"></div>
+        <div class="paper-grid"><div class="paper-box"></div><div class="paper-box"></div></div>
+        <div class="paper-heading"><b>01</b><span></span></div>
+        <div class="activities"><div class="activity"><i></i></div><div class="activity"><i></i></div><div class="activity"><i></i></div></div>
+        <div class="checks"><div class="check-line"></div><div class="check-line"></div><div class="check-line"></div></div>
+        <div class="paper-footer"></div>
+      </article>
+    </div>
+  </section>
+</body>
+</html>

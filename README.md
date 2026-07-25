@@ -28,12 +28,19 @@ https://eunhorang.github.io/classroom-one-page/
 ```text
 교실 한 장/
 ├─ app/
+│  ├─ fonts/
+│  │  └─ PretendardVariable.woff2 # 화면·인쇄용 한글 글꼴
 │  ├─ globals.css                 # 전체 화면, 모바일, A4 인쇄 디자인
-│  ├─ layout.tsx                  # 사이트 제목과 설명
+│  ├─ layout.tsx                  # 사이트 제목, 설명, 로컬 글꼴 설정
 │  └─ page.tsx                    # 첫 화면을 불러오는 파일
 ├─ components/
 │  └─ ClassroomOnePage.tsx        # 입력, 자동 저장, 미리보기, 인쇄 기능
+├─ docs/
+│  ├─ og-card.html                # 소셜 공유 이미지 디자인 원본
+│  └─ og-image-prompt.md          # 소셜 공유 이미지 제작 안내
 ├─ public/
+│  ├─ fonts/
+│  │  └─ PRETENDARD-LICENSE.txt   # Pretendard 글꼴 라이선스
 │  └─ og.png                      # 링크 공유용 대표 이미지
 ├─ tests/
 │  └─ rendered-html.test.mjs      # 핵심 화면과 설정 자동 검사
@@ -181,11 +188,11 @@ GitHub Free 요금제에서는 공개 저장소에 GitHub Pages를 사용할 수
 - 해결 방법: 용지를 `A4`, 방향을 `세로`, 여백을 `없음` 또는 `기본값`, 배율을 `100%`로 설정합니다.
 - 확인할 파일: `app/globals.css`
 
-### 한글이 다르게 보이는 경우
+### 한글 글꼴이 적용되지 않는 경우
 
-- 발생 원인: 사용 중인 컴퓨터에 같은 한글 글꼴이 없을 수 있습니다.
-- 해결 방법: Mac은 기본 `Apple SD Gothic Neo`, Windows는 기본 `맑은 고딕`을 자동 사용하므로 인쇄 결과의 줄바꿈만 확인합니다.
-- 확인할 파일: `app/globals.css`
+- 발생 원인: 배포 파일에 로컬 Pretendard 글꼴이 포함되지 않았거나 정적 파일 경로가 잘못되었습니다.
+- 해결 방법: `app/fonts/PretendardVariable.woff2`가 있는지 확인한 뒤 GitHub Pages 전용 빌드를 다시 실행합니다.
+- 확인할 파일: `app/fonts/PretendardVariable.woff2`, `app/layout.tsx`, `next.config.ts`
 
 ## 7. 개인정보 보호
 

@@ -232,37 +232,35 @@ export function ClassroomOnePage() {
           </span>
           <span>
             <strong>교실 한 장</strong>
-            <small>CLASSROOM ONE PAGE</small>
+            <small>A4 수업 자료 만들기</small>
           </span>
         </a>
         <div className="local-save-badge">
           <span className="status-dot" aria-hidden="true" />
-          외부 전송 없이, 이 기기에만 저장
+          내용은 이 기기에만 저장돼요
         </div>
       </header>
 
       <main className="app-main" id="top">
         <section className="hero" aria-labelledby="hero-title">
-          <p className="eyebrow">교사를 위한 가장 가벼운 수업 자료 도구</p>
+          <p className="eyebrow">교사를 위한 한 장 도구</p>
           <h1 id="hero-title">
             수업에 필요한 내용을,
             <br />
             <span>A4 한 장으로.</span>
           </h1>
           <p className="hero-description">
-            학습지·활동 안내·수업 정리를 입력하고 바로 인쇄하세요.
-            <br />
-            가입도, 복잡한 설정도 필요 없습니다.
+            내용을 입력하면 바로 미리보고, 인쇄하거나 PDF로 저장할 수 있어요.
           </p>
           <div className="hero-points" aria-label="주요 특징">
             <span>
-              <i aria-hidden="true">01</i> 입력 즉시 미리보기
+              <i aria-hidden="true">✓</i> 가입 없이 바로 시작
             </span>
             <span>
-              <i aria-hidden="true">02</i> 브라우저 자동 저장
+              <i aria-hidden="true">✓</i> 입력 즉시 미리보기
             </span>
             <span>
-              <i aria-hidden="true">03</i> 인쇄·PDF 저장
+              <i aria-hidden="true">✓</i> 브라우저 자동 저장
             </span>
           </div>
         </section>
@@ -271,7 +269,7 @@ export function ClassroomOnePage() {
           <aside className="editor-card" id="editor-main">
             <div className="editor-heading">
               <div>
-                <p className="section-kicker">STEP 1</p>
+                <p className="section-kicker">01 · 내용 입력</p>
                 <h2>한 장 내용 채우기</h2>
               </div>
               <span className="save-status" role="status" aria-live="polite">
@@ -353,7 +351,8 @@ export function ClassroomOnePage() {
                         title={option.label}
                         onClick={() => updateField("theme", option.value)}
                       >
-                        <span aria-hidden="true" />
+                        <span className="theme-swatch" aria-hidden="true" />
+                        <span className="theme-option-label">{option.label}</span>
                       </button>
                     ))}
                   </div>
@@ -498,7 +497,7 @@ export function ClassroomOnePage() {
           <section className="preview-area" aria-labelledby="preview-title">
             <div className="preview-toolbar">
               <div>
-                <p className="section-kicker">STEP 2</p>
+                <p className="section-kicker">02 · 미리보기</p>
                 <h2 id="preview-title">A4 미리보기</h2>
               </div>
               <button
@@ -506,12 +505,26 @@ export function ClassroomOnePage() {
                 type="button"
                 onClick={printDraft}
               >
-                <span aria-hidden="true">⇩</span>
+                <svg
+                  className="button-icon"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <path d="M7 8V3h10v5M7 17H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2M7 14h10v7H7z" />
+                </svg>
                 인쇄 · PDF 저장
               </button>
             </div>
 
-            <div className="paper-stage">
+            <p className="mobile-scroll-help">
+              미리보기는 좌우로 밀어 전체 내용을 확인할 수 있어요.
+            </p>
+            <div
+              className="paper-stage"
+              tabIndex={0}
+              aria-label="A4 미리보기. 작은 화면에서는 좌우로 스크롤할 수 있습니다."
+            >
               <article
                 className="lesson-sheet"
                 data-theme={draft.theme}
@@ -581,7 +594,7 @@ export function ClassroomOnePage() {
                       <span className="sheet-heading-number">01</span>
                       <h3>차근차근 해봐요</h3>
                     </div>
-                    <small>ACTIVITY</small>
+                    <small>활동</small>
                   </div>
                   <div className="activity-list">
                     {draft.activities.map((activity, index) => (
@@ -602,7 +615,7 @@ export function ClassroomOnePage() {
                       <span className="sheet-heading-number">02</span>
                       <h3>스스로 확인해요</h3>
                     </div>
-                    <small>CHECK</small>
+                    <small>점검</small>
                   </div>
                   <div className="check-list">
                     {draft.checks.map((check, index) => (
@@ -628,8 +641,8 @@ export function ClassroomOnePage() {
             </div>
 
             <p className="print-help">
-              Mac에서는 인쇄 창 왼쪽 아래의 <strong>PDF</strong> →{" "}
-              <strong>PDF로 저장</strong>을 선택하세요.
+              인쇄 창에서 용지 <strong>A4</strong> · 방향 <strong>세로</strong> · 배율{" "}
+              <strong>100%</strong>를 확인한 뒤 PDF로 저장하세요.
             </p>
           </section>
         </div>
@@ -638,7 +651,7 @@ export function ClassroomOnePage() {
       <footer className="site-footer">
         <p>
           교실의 아이디어가 좋은 한 장으로 이어지도록.
-          <span>교실 한 장 · 최소 버전</span>
+          <span>가입 없이 · 외부 전송 없이</span>
         </p>
       </footer>
     </div>
