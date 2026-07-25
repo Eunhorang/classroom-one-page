@@ -20,6 +20,10 @@ type LessonDraft = {
 };
 
 const STORAGE_KEY = "classroom-one-page:draft:v1";
+const CSS_PIXELS_PER_INCH = 96;
+const MILLIMETERS_PER_INCH = 25.4;
+const A4_WIDTH_PX = (210 * CSS_PIXELS_PER_INCH) / MILLIMETERS_PER_INCH;
+const A4_HEIGHT_PX = (297 * CSS_PIXELS_PER_INCH) / MILLIMETERS_PER_INCH;
 
 const EXAMPLE_DRAFT: LessonDraft = {
   materialType: "학습지",
@@ -125,7 +129,9 @@ export function ClassroomOnePage() {
   const [draft, setDraft] = useState<LessonDraft>(EXAMPLE_DRAFT);
   const [isReady, setIsReady] = useState(false);
   const [saveStatus, setSaveStatus] = useState("예시 자료가 준비되었어요");
+  const [previewScale, setPreviewScale] = useState(1);
   const skipNextSave = useRef(false);
+  const paperStageRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -164,6 +170,37 @@ export function ClassroomOnePage() {
 
     return () => window.clearTimeout(timer);
   }, [draft, isReady]);
+
+  useEffect(() => {
+    const paperStage = paperStageRef.current;
+    if (!paperStage) return;
+
+    const updatePreviewScale = () => {
+      const style = window.getComputedStyle(paperStage);
+      const horizontalPadding =
+        Number.parseFloat(style.paddingLeft) + Number.parseFloat(style.paddingRight);
+      const availableWidth = paperStage.clientWidth - horizontalPadding;
+      if (availableWidth <= 0) return;
+
+      const nextScale = Math.min(1, availableWidth / A4_WIDTH_PX);
+      setPreviewScale((currentScale) =>
+        Math.abs(currentScale - nextScale) < 0.001 ? currentScale : nextScale,
+      );
+    };
+
+    updatePreviewScale();
+    const resizeObserver =
+      typeof ResizeObserver === "undefined"
+        ? null
+        : new ResizeObserver(updatePreviewScale);
+    resizeObserver?.observe(paperStage);
+    window.addEventListener("resize", updatePreviewScale);
+
+    return () => {
+      resizeObserver?.disconnect();
+      window.removeEventListener("resize", updatePreviewScale);
+    };
+  }, []);
 
   const keyPointList = useMemo(
     () =>
@@ -518,18 +555,24 @@ export function ClassroomOnePage() {
             </div>
 
             <p className="mobile-scroll-help">
-              미리보기는 좌우로 밀어 전체 내용을 확인할 수 있어요.
+              미리보기는 화면 너비에 맞춰 축소되어 표시됩니다.
             </p>
             <div
+              ref={paperStageRef}
               className="paper-stage"
               tabIndex={0}
-              aria-label="A4 미리보기. 작은 화면에서는 좌우로 스크롤할 수 있습니다."
+              aria-label="화면 너비에 맞춘 A4 미리보기입니다."
             >
-              <article
-                className="lesson-sheet"
-                data-theme={draft.theme}
-                aria-label="A4 수업 자료 미리보기"
+              <div
+                className="lesson-sheet-frame"
+                style={{ height: `${A4_HEIGHT_PX * previewScale}px` }}
               >
+                <article
+                  className="lesson-sheet"
+                  data-theme={draft.theme}
+                  aria-label="A4 수업 자료 미리보기"
+                  style={{ transform: `scale(${previewScale})` }}
+                >
                 <header className="sheet-header">
                   <div className="sheet-topline">
                     <div className="sheet-mini-brand">
@@ -637,7 +680,8 @@ export function ClassroomOnePage() {
                   <p>오늘도 한 장만큼 성장했어요.</p>
                   <b>교실 한 장</b>
                 </footer>
-              </article>
+                </article>
+              </div>
             </div>
 
             <p className="print-help">

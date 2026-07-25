@@ -288,12 +288,12 @@ a:focus-visible,
 
 .save-status {
   display: inline-flex;
-  max-width: 158px;
+  max-width: 170px;
   align-items: center;
   justify-content: flex-end;
   gap: 6px;
-  color: #78817c;
-  font-size: 10px;
+  color: #69716c;
+  font-size: 11px;
   font-weight: 600;
   line-height: 1.35;
   text-align: right;
@@ -449,7 +449,7 @@ a:focus-visible,
 .field > span,
 .theme-label {
   color: #535d57;
-  font-size: 11px;
+  font-size: 12px;
   font-weight: 680;
 }
 
@@ -460,8 +460,8 @@ a:focus-visible,
 }
 
 .field-label-row small {
-  color: #969e99;
-  font-size: 9px;
+  color: #6f7772;
+  font-size: 11px;
   font-variant-numeric: tabular-nums;
   font-weight: 550;
 }
@@ -475,7 +475,7 @@ a:focus-visible,
   outline: 0;
   background: #fff;
   color: #29302c;
-  font-size: 12px;
+  font-size: 13px;
   transition:
     border-color 150ms ease,
     box-shadow 150ms ease,
@@ -519,8 +519,8 @@ a:focus-visible,
 }
 
 .field-help {
-  color: #929a95;
-  font-size: 9px;
+  color: #6f7772;
+  font-size: 11px;
 }
 
 .theme-field {
@@ -546,8 +546,8 @@ a:focus-visible,
   border: 1px solid var(--line);
   border-radius: 9px;
   background: #fff;
-  color: #69716c;
-  font-size: 10px;
+  color: #626a65;
+  font-size: 11px;
   font-weight: 620;
   transition:
     border-color 150ms ease,
@@ -675,7 +675,7 @@ a:focus-visible,
 .privacy-note p {
   margin: 0;
   color: #6e624f;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.65;
 }
 
@@ -712,23 +712,34 @@ a:focus-visible,
   scrollbar-width: thin;
 }
 
+.lesson-sheet-frame {
+  display: flex;
+  width: 100%;
+  align-items: flex-start;
+  justify-content: center;
+}
+
 .lesson-sheet {
   --sheet-accent: #176b59;
   --sheet-accent-deep: #0f5143;
   --sheet-soft: #e9f3f0;
   --sheet-warm: #f6f0e4;
   display: flex;
-  width: min(100%, 210mm);
+  width: 210mm;
+  min-width: 210mm;
+  height: 297mm;
   min-height: 297mm;
+  max-height: 297mm;
   flex: 0 0 auto;
   flex-direction: column;
-  margin: 0 auto;
+  margin: 0;
   padding: 12mm 13mm 10mm;
   overflow: hidden;
   border: 1px solid rgba(37, 47, 41, 0.08);
   background: #fff;
   box-shadow: var(--shadow-paper);
   color: #26302a;
+  transform-origin: top center;
 }
 
 .lesson-sheet[data-theme="navy"] {
@@ -1093,8 +1104,8 @@ a:focus-visible,
 
 .print-help {
   margin: 13px 0 0;
-  color: #747d78;
-  font-size: 10px;
+  color: #69716c;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -1106,8 +1117,8 @@ a:focus-visible,
 .site-footer {
   padding: 30px 24px 44px;
   border-top: 1px solid rgba(28, 33, 30, 0.075);
-  color: #7f8782;
-  font-size: 10px;
+  color: #69716c;
+  font-size: 12px;
   text-align: center;
 }
 
@@ -1119,6 +1130,32 @@ a:focus-visible,
   margin-left: 10px;
   color: var(--accent);
   font-weight: 680;
+}
+
+@media (min-width: 1041px) {
+  .paper-stage {
+    min-height: 420px;
+    max-height: calc(100vh - 116px);
+  }
+}
+
+@media (min-width: 1041px) and (max-height: 760px) {
+  .hero {
+    padding: 28px 0 30px;
+  }
+
+  .hero h1 {
+    margin: 9px 0 10px;
+    font-size: 44px;
+  }
+
+  .hero-description {
+    font-size: 14px;
+  }
+
+  .hero-points {
+    margin-top: 14px;
+  }
 }
 
 @media (max-width: 1180px) {
@@ -1149,11 +1186,6 @@ a:focus-visible,
   .paper-stage {
     padding: clamp(10px, 3vw, 20px);
   }
-
-  .lesson-sheet {
-    min-height: auto;
-    aspect-ratio: 210 / 297;
-  }
 }
 
 @media (max-width: 640px) {
@@ -1179,14 +1211,14 @@ a:focus-visible,
   }
 
   .brand small {
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .local-save-badge {
     max-width: 132px;
     justify-content: center;
     padding: 7px 9px;
-    font-size: 9px;
+    font-size: 10px;
     line-height: 1.35;
     text-align: center;
   }
@@ -1216,7 +1248,7 @@ a:focus-visible,
   }
 
   .hero-points span {
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .workspace {
@@ -1287,7 +1319,7 @@ a:focus-visible,
   .button-primary {
     min-height: 42px;
     padding: 0 12px;
-    font-size: 10px;
+    font-size: 11px;
   }
 
   .button-icon {
@@ -1298,20 +1330,8 @@ a:focus-visible,
   .mobile-scroll-help {
     display: block;
     margin: 0 0 9px;
-    color: #7a837e;
-    font-size: 10px;
-  }
-
-  .paper-stage {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-
-  .lesson-sheet {
-    width: 640px;
-    min-height: 905px;
-    aspect-ratio: auto;
-    padding: 34px 39px 30px;
+    color: #69716c;
+    font-size: 11px;
   }
 
   .site-footer span {
@@ -1378,15 +1398,28 @@ a:focus-visible,
     box-shadow: none;
   }
 
+  .lesson-sheet-frame {
+    display: flex;
+    width: 210mm !important;
+    height: 297mm !important;
+  }
+
+  .paper-stage {
+    min-height: 297mm;
+    max-height: 297mm;
+  }
+
   .lesson-sheet {
     width: 210mm;
     min-width: 210mm;
     max-width: 210mm;
+    height: 297mm;
     min-height: 297mm;
     max-height: 297mm;
     margin: 0;
     border: 0;
     box-shadow: none;
+    transform: none !important;
     break-inside: avoid;
     page-break-inside: avoid;
   }

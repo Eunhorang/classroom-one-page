@@ -38,6 +38,8 @@ test("임시 스타터 흔적을 제거하고 제품 설정을 유지한다", as
   assert.match(layout, /next\/font\/local/);
   assert.match(component, /window\.localStorage/);
   assert.match(component, /window\.print\(\)/);
+  assert.match(component, /ResizeObserver/);
+  assert.match(component, /lesson-sheet-frame/);
   assert.match(component, /theme-option-label/);
   assert.match(packageJson, /"name": "classroom-one-page"/);
   assert.match(packageJson, /"build:pages": "next build"/);
@@ -46,6 +48,8 @@ test("임시 스타터 흔적을 제거하고 제품 설정을 유지한다", as
   assert.match(styles, /--font-pretendard/);
   assert.match(styles, /@media print/);
   assert.match(styles, /size:\s*A4 portrait/);
+  assert.match(styles, /transform-origin:\s*top center/);
+  assert.doesNotMatch(styles, /\.lesson-sheet\s*\{[^}]*width:\s*640px/s);
   assert.doesNotMatch(styles, /font-family:\s*Georgia/);
   assert.doesNotMatch(page, /codex-preview|SkeletonPreview/);
   await assert.rejects(access(new URL("../app/_sites-preview", import.meta.url)));
