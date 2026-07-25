@@ -4,6 +4,12 @@
 
 로그인이나 API 키 없이 바로 사용할 수 있습니다. 입력한 내용은 외부 서버가 아니라 현재 사용 중인 브라우저 안에만 임시 저장됩니다.
 
+GitHub Pages 배포 주소:
+
+```text
+https://eunhorang.github.io/classroom-one-page/
+```
+
 ## 1. 무엇을 만들었나요?
 
 - `학습지`, `활동 안내`, `수업 정리` 중 자료 유형 선택
@@ -31,9 +37,13 @@
 │  └─ og.png                      # 링크 공유용 대표 이미지
 ├─ tests/
 │  └─ rendered-html.test.mjs      # 핵심 화면과 설정 자동 검사
+├─ .github/
+│  └─ workflows/
+│     ├─ ci.yml                   # 코드와 기능 자동 검사
+│     └─ pages.yml                # GitHub Pages 자동 배포
 ├─ .env.example                   # 환경 변수 안내(현재는 설정 불필요)
-├─ .openai/
-│  └─ hosting.json                # Sites 배포 정보
+├─ AGENTS.md                      # 이 프로젝트의 GitHub Pages 배포 원칙
+├─ next.config.ts                 # 정적 사이트와 저장소 경로 설정
 ├─ package.json                   # 실행 명령과 사용 라이브러리
 └─ README.md                      # 현재 안내 문서
 ```
@@ -98,7 +108,7 @@ npm run lint
 npm test
 ```
 
-## 5. GitHub에 올리기
+## 5. GitHub에 올리고 github.io로 배포하기
 
 GitHub 로그인 상태를 먼저 확인합니다.
 
@@ -112,25 +122,26 @@ gh auth status
 gh auth login -h github.com -p https -w
 ```
 
-이후 저장소를 만들고 올리는 과정은 다음과 같습니다. 이 프로젝트를 공개하기 전에 학생 자료나 개인정보가 들어 있지 않은지 꼭 확인하세요.
+이 프로젝트는 `main` 브랜치에 새 코드가 올라오면 GitHub Actions가 자동으로 검사하고 GitHub Pages에 배포합니다.
+
+GitHub Actions는 GitHub 안에서 명령을 자동으로 실행해 주는 작업 도우미입니다. 배포 설정은 `.github/workflows/pages.yml`에 있습니다.
+
+직접 배포용 정적 파일이 만들어지는지 확인하려면 다음 명령을 실행합니다.
 
 ```bash
-git branch -M main
+GITHUB_PAGES=true GITHUB_REPOSITORY="Eunhorang/classroom-one-page" GITHUB_REPOSITORY_OWNER="Eunhorang" npm run build:pages
 ```
 
-```bash
-git add .
-```
+성공하면 `out` 폴더가 만들어집니다. GitHub Pages가 이 폴더의 내용을 웹사이트로 공개합니다.
 
-```bash
-git commit -m "feat: 교실 한 장 최소 버전"
-```
+자동 배포 순서는 다음과 같습니다.
 
-```bash
-gh repo create classroom-one-page --private --source=. --remote=origin --push
-```
+1. GitHub 저장소의 `main` 브랜치에 변경 내용 올리기
+2. `교실 한 장 자동 검사`가 성공하는지 확인하기
+3. `GitHub Pages 배포`가 성공하는지 확인하기
+4. `https://eunhorang.github.io/classroom-one-page/`에 접속하기
 
-처음에는 비공개 저장소를 권장합니다. 공개 저장소로 바꾸려면 GitHub 저장소의 `Settings` → `General` → `Change repository visibility`에서 변경할 수 있습니다.
+GitHub Free 요금제에서는 공개 저장소에 GitHub Pages를 사용할 수 있습니다. 비공개 저장소에서 Pages를 사용할 수 없는 경우에는 저장소 공개 전환 전에 소스가 누구에게나 보인다는 점을 확인해야 합니다.
 
 ## 6. 자주 생기는 오류
 
@@ -151,6 +162,18 @@ gh repo create classroom-one-page --private --source=. --remote=origin --push
 - 발생 원인: GitHub 로그인 정보가 만료되었습니다.
 - 해결 방법: `gh auth login -h github.com -p https -w`를 실행하고 브라우저에서 로그인합니다.
 - 확인할 파일: 별도 파일 없음
+
+### GitHub Pages 주소에서 `404`가 보이는 경우
+
+- 발생 원인: Pages 기능이 아직 켜지지 않았거나 첫 배포가 진행 중입니다.
+- 해결 방법: GitHub 저장소의 `Actions`에서 `GitHub Pages 배포`가 성공했는지 확인하고 최대 10분 정도 기다립니다.
+- 확인할 파일: `.github/workflows/pages.yml`, `next.config.ts`
+
+### 화면은 열리지만 디자인이 적용되지 않는 경우
+
+- 발생 원인: 저장소 이름인 `/classroom-one-page` 경로가 CSS와 JavaScript 주소에 적용되지 않았습니다.
+- 해결 방법: `GITHUB_PAGES=true` 설정으로 다시 빌드하고 `next.config.ts`의 `basePath` 설정을 확인합니다.
+- 확인할 파일: `next.config.ts`
 
 ### PDF가 두 장으로 나뉘는 경우
 
@@ -195,3 +218,5 @@ gh repo create classroom-one-page --private --source=. --remote=origin --push
 - [ ] 실제 학생 개인정보가 소스와 예시에 없다.
 - [ ] `npm run lint`가 성공한다.
 - [ ] `npm test`가 성공한다.
+- [ ] `npm run build:pages`가 성공하고 `out` 폴더가 생성된다.
+- [ ] `https://eunhorang.github.io/classroom-one-page/`에서 디자인과 기능이 정상 표시된다.

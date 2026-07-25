@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 소스 코드 받기
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       - name: Node.js 준비
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: "22"
           cache: npm
